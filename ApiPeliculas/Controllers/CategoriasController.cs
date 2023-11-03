@@ -61,7 +61,7 @@ namespace ApiPeliculas.Controllers
             return Ok(itemCategoriaDto);
         }
 
-        //Agregar Categoria
+        //Agregar Categorias
 
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(CategoriaDto))]
@@ -96,6 +96,8 @@ namespace ApiPeliculas.Controllers
 
             return CreatedAtRoute("GetCategoria", new { categoriaId = categoria.Id }, categoria);
         }
+
+        //Actualizar Categorias
 
     }
 }
