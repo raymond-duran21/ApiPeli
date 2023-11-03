@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WtQ1HxqKVJAfGjBrf2AiMfIZ8B0iVBApFNOOuQbds4bAFbOGKh+4hhMiDKREghm10Ncd2LHiJ2zJVhNjCVFDJw==",
+  "dgSpecHash": "Zqb7VFn2pT1xBH1kz3NIqsrM6/174zMp81Vp2Se35XQekJqKRf3cvrHxH9LLQywEjcsn5s4e3e0E9c/6Si0ZFA==",
   "success": true,
   "projectFilePath": "C:\\Users\\raymond.delcarmen\\source\\repos\\ApiPeliculas\\ApiPeliculas\\ApiPeliculas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\raymond.delcarmen\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\raymond.delcarmen\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\raymond.delcarmen\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\raymond.delcarmen\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\raymond.delcarmen\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
