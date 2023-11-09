@@ -2,12 +2,12 @@
 
 namespace ApiPeliculas.Models.Dtos
 {
-    public class CategoriaDto
+    public class UsuarioDto
     {
         public int Id { get; set; }
-
-        [Required(ErrorMessage = "El nombre es requerido")]
-        [MaxLength(100, ErrorMessage = "El numero maximo de caracteres es 100.")]
+        public string NombreUsuario { get; set; }
         public string Nombre { get; set; }
+        public string Password { get; set; }
+        public string Role { get; set; }
     }
 }

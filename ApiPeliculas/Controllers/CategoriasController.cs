@@ -62,7 +62,6 @@ namespace ApiPeliculas.Controllers
         }
 
         //Agregar Categorias
-
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(CategoriaDto))]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -98,6 +97,57 @@ namespace ApiPeliculas.Controllers
         }
 
         //Actualizar Categorias
+        [HttpPatch("{categoriaId:int}", Name ="ActualizarPatchCategoria")]
+        [ProducesResponseType(201, Type = typeof(CategoriaDto))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+
+        public IActionResult ActualizarPatchCategoria(int categoriaId, [FromBody] CategoriaDto categoriaDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (categoriaDto == null || categoriaId != categoriaDto.Id)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var categoria = _mapper.Map<Categoria>(categoriaDto);
+            if (!_ctRepo.ActualizarCategoria(categoria))
+            {
+                ModelState.AddModelError("", $"Algo salio mal actualizando el registro{categoria.Nombre}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        //Borrar Categoria
+        [HttpDelete("{categoriaId:int}", Name = "BorrarCategoria")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+        public IActionResult BorrarCategoria(int categoriaId)
+        {
+            if (!_ctRepo.ExisteCategoria(categoriaId))
+            {
+                return NotFound();
+            }
+
+            var categoria = _ctRepo.GetCategoria(categoriaId);  
+
+            if (!_ctRepo.BorrarCategoria(categoria))
+            {
+                ModelState.AddModelError("", $"Algo salio mal borrando el registro{categoria.Nombre}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
 
     }
 }

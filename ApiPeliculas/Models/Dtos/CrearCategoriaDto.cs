@@ -5,7 +5,7 @@ namespace ApiPeliculas.Models.Dtos
     public class CrearCategoriaDto
     {
         [Required(ErrorMessage = "El nombre es requerido")]
-        [MaxLength(255, ErrorMessage = "El numero maximo de caracteres es 255.")]
+        [MaxLength(100, ErrorMessage = "El numero maximo de caracteres es 100.")]
         public string Nombre { get; set; }
     }
 }
