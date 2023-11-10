@@ -2,7 +2,9 @@
 using ApiPeliculas.Models;
 using ApiPeliculas.Models.Dtos;
 using ApiPeliculas.Repositorio.IRepositorio;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using XSystem.Security.Cryptography;
 
@@ -11,10 +13,11 @@ namespace ApiPeliculas.Repositorio
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
         private readonly ApplicationDbContext _bd;
-        private string claveSecreta
-        public UsuarioRepositorio(ApplicationDbContext bd)
+        private string claveSecreta;
+        public UsuarioRepositorio(ApplicationDbContext bd, IConfiguration config)
         {
             _bd = bd;
+            claveSecreta = config.GetValue<string>("ApiSettings:Secreta");
         }
 
         public Usuario GetUsuario(int usuarioId)
@@ -63,7 +66,26 @@ namespace ApiPeliculas.Repositorio
             var manejadorToken = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(claveSecreta);
 
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, usuario.NombreUsuario.ToString()),
+                    new Claim(ClaimTypes.Role, usuario.Role)
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
 
+            var token = manejadorToken.CreateToken(tokenDescriptor);
+
+            UsuarioLoginRespuestaDto usuarioLoginRespuestaDto = new UsuarioLoginRespuestaDto()
+            {
+                Token = manejadorToken.WriteToken(token),
+                Usuario = usuario
+            };
+
+            return usuarioLoginRespuestaDto;
         }
 
         public async Task<Usuario> Registro(UsuarioRegistroDto usuarioRegistroDto)

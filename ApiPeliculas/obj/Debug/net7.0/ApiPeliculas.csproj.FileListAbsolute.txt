@@ -76,3 +76,5 @@ C:\Users\raymond.delcarmen\source\repos\ApiPeliculas\ApiPeliculas\obj\Debug\net7
 C:\Users\raymond.delcarmen\source\repos\ApiPeliculas\ApiPeliculas\obj\Debug\net7.0\ref\ApiPeliculas.dll
 C:\Users\raymond.delcarmen\source\repos\ApiPeliculas\ApiPeliculas\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\raymond.delcarmen\source\repos\ApiPeliculas\ApiPeliculas\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\raymond.delcarmen\source\repos\ApiPeliculas\ApiPeliculas\bin\Debug\net7.0\Microsoft.Practices.ServiceLocation.dll
+C:\Users\raymond.delcarmen\source\repos\ApiPeliculas\ApiPeliculas\bin\Debug\net7.0\XAct.Core.PCL.dll
